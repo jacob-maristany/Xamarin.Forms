@@ -148,7 +148,7 @@ namespace Xamarin.Forms.Platform.Android
 
 			if (e.PropertyName == Label.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Label.VerticalTextAlignmentProperty.PropertyName)
 				UpdateGravity();
-			else if (e.PropertyName == Label.TextColorProperty.PropertyName)
+			else if (e.PropertyName == Label.TextColorProperty.PropertyName || e.PropertyName == Label.TextTransformProperty.PropertyName)
 				UpdateText();
 			else if (e.PropertyName == Label.FontProperty.PropertyName)
 				UpdateText();
@@ -274,7 +274,7 @@ namespace Xamarin.Forms.Platform.Android
 					_view.SetTextColor(_labelTextColorDefault);
 					_lastUpdateColor = Color.Default;
 				}
-				_view.Text = Element.Text;
+				_view.Text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
 				UpdateColor();
 				UpdateFont();
 

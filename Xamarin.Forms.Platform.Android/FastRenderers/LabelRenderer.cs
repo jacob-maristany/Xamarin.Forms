@@ -261,7 +261,8 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 		{
 			ElementPropertyChanged?.Invoke(this, e);
 
-			if (e.PropertyName == Label.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Label.VerticalTextAlignmentProperty.PropertyName)
+			if (e.PropertyName == Label.HorizontalTextAlignmentProperty.PropertyName || 
+				e.PropertyName == Label.VerticalTextAlignmentProperty.PropertyName)
 				UpdateGravity();
 			else if (e.PropertyName == Label.TextColorProperty.PropertyName)
 				UpdateText();
@@ -273,7 +274,9 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 				UpdateCharacterSpacing();
 			else if (e.PropertyName == Label.TextDecorationsProperty.PropertyName)
 				UpdateTextDecorations();
-			else if (e.PropertyName == Label.TextProperty.PropertyName || e.PropertyName == Label.FormattedTextProperty.PropertyName)
+			else if (e.PropertyName == Label.TextProperty.PropertyName ||
+				e.PropertyName == Label.FormattedTextProperty.PropertyName ||
+				e.PropertyName == Label.TextTransformProperty.PropertyName)
 				UpdateText();
 			else if (e.PropertyName == Label.LineHeightProperty.PropertyName)
 				UpdateLineHeight();
@@ -380,7 +383,7 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 					SetTextColor(_labelTextColorDefault);
 					_lastUpdateColor = Color.Default;
 				}
-				Text = Element.Text;
+				Text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
 				UpdateColor();
 				UpdateFont();
 

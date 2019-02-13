@@ -9,6 +9,7 @@ namespace Xamarin.Forms.Platform.WPF
 	public class EditorRenderer : ViewRenderer<Editor, TextBox>
 	{
 		bool _fontApplied;
+		string _transformedText;
 
 		protected override void OnElementChanged(ElementChangedEventArgs<Editor> e)
 		{
@@ -38,7 +39,8 @@ namespace Xamarin.Forms.Platform.WPF
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			if (e.PropertyName == Editor.TextProperty.PropertyName)
+			if (e.PropertyName == Editor.TextProperty.PropertyName ||
+				e.PropertyName == Editor.TextTransformProperty.PropertyName)
 				UpdateText();
 			else if (e.PropertyName == InputView.KeyboardProperty.PropertyName)
 				UpdateInputScope();
@@ -58,6 +60,7 @@ namespace Xamarin.Forms.Platform.WPF
 		
 		void NativeOnTextChanged(object sender, System.Windows.Controls.TextChangedEventArgs textChangedEventArgs)
 		{
+			_transformedText = Internals.TextTransformUtilites.GetTransformedText(Control.Text, Element.TextTransform);
 			((IElementController)Element).SetValueFromRenderer(Editor.TextProperty, Control.Text);
 		}
 
@@ -98,13 +101,14 @@ namespace Xamarin.Forms.Platform.WPF
 
 		void UpdateText()
 		{
-			string newText = Element.Text ?? "";
+			string newText = _transformedText = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
 
 			if (Control.Text == newText)
 				return;
 
+			var savedSelectionStart = Control.SelectionStart < newText.Length ? Control.SelectionStart : newText.Length;
 			Control.Text = newText;
-			Control.SelectionStart = Control.Text.Length;
+			Control.SelectionStart = savedSelectionStart;
 		}
 
 		void UpdateTextColor()

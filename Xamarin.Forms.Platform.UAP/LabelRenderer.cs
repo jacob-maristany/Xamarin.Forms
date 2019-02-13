@@ -155,11 +155,10 @@ namespace Xamarin.Forms.Platform.UWP
 
 		protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
 		{
-			if (e.PropertyName == Label.TextProperty.PropertyName ||
-				e.PropertyName == Label.FormattedTextProperty.PropertyName)
-			{
+			if (e.PropertyName == Label.TextProperty.PropertyName || 
+				e.PropertyName == Label.FormattedTextProperty.PropertyName || 
+				e.PropertyName == Label.TextTransformProperty.PropertyName)
 				UpdateText(Control);
-			}
 			else if (e.PropertyName == Label.TextColorProperty.PropertyName)
 				UpdateColor(Control);
 			else if (e.PropertyName == Label.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Label.VerticalTextAlignmentProperty.PropertyName)
@@ -338,7 +337,7 @@ namespace Xamarin.Forms.Platform.UWP
 
 				if (formatted == null)
 				{
-					textBlock.Text = label.Text ?? string.Empty;
+					textBlock.Text = Internals.TextTransformUtilites.GetTransformedText(label.Text, label.TextTransform);
 				}
 				else
 				{

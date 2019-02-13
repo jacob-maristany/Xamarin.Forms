@@ -23,6 +23,9 @@ namespace Xamarin.Forms
 
 		public static readonly BindableProperty PlaceholderProperty = PlaceholderElement.PlaceholderProperty;
 
+		public static readonly BindableProperty TextTransformProperty = TextElement.TextTransformProperty;
+
+
 		public static readonly BindableProperty PlaceholderColorProperty = PlaceholderElement.PlaceholderColorProperty;
 
 		public static readonly BindableProperty IsTextPredictionEnabledProperty = BindableProperty.Create(nameof(IsTextPredictionEnabled), typeof(bool), typeof(Editor), true, BindingMode.Default);
@@ -78,6 +81,12 @@ namespace Xamarin.Forms
 			set { SetValue(IsTextPredictionEnabledProperty, value); }
 		}
 
+		public TextTransform TextTransform
+		{
+			get { return (TextTransform)GetValue(TextTransformProperty); }
+			set { SetValue(TextTransformProperty, value); }
+		}
+
 		public string FontFamily
 		{
 			get { return (string)GetValue(FontFamilyProperty); }
@@ -120,6 +129,10 @@ namespace Xamarin.Forms
 		void IFontElement.OnFontAttributesChanged(FontAttributes oldValue, FontAttributes newValue)
 		{
 			UpdateAutoSizeOption();
+		}
+
+		void ITextElement.OnTextTransformChanged(TextTransform oldValue, TextTransform newValue)
+		{
 		}
 
 		public event EventHandler Completed;

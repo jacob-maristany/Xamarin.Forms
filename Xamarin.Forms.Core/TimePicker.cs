@@ -25,6 +25,8 @@ namespace Xamarin.Forms
 
 		public static readonly BindableProperty FontAttributesProperty = FontElement.FontAttributesProperty;
 
+		public static readonly BindableProperty TextTransformProperty = TextElement.TextTransformProperty;
+
 		readonly Lazy<PlatformConfigurationRegistry<TimePicker>> _platformConfigurationRegistry;
 
 		public TimePicker()
@@ -75,6 +77,12 @@ namespace Xamarin.Forms
 			set { SetValue(FontSizeProperty, value); }
 		}
 
+		public TextTransform TextTransform
+		{
+			get => (TextTransform)GetValue(TextTransformProperty);
+			set => SetValue(TextTransformProperty, value);
+		}
+
 		void IFontElement.OnFontFamilyChanged(string oldValue, string newValue) =>
 			InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
 
@@ -104,5 +112,7 @@ namespace Xamarin.Forms
 			InvalidateMeasure();
 		}
 
+		void ITextElement.OnTextTransformChanged(TextTransform oldValue, TextTransform newValue)
+			=> InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
 	}
 }

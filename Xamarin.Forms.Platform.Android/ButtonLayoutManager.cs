@@ -205,7 +205,7 @@ namespace Xamarin.Forms.Platform.Android
 				UpdatePadding();
 			else if (e.PropertyName == Button.ImageSourceProperty.PropertyName || e.PropertyName == Button.ContentLayoutProperty.PropertyName)
 				UpdateImage();
-			else if (e.PropertyName == Button.TextProperty.PropertyName || e.PropertyName == VisualElement.IsVisibleProperty.PropertyName)
+			else if (e.IsOneOf(Button.TextProperty, VisualElement.IsVisibleProperty, Button.TextTransformProperty))
 				UpdateTextAndImage();
 			else if (e.PropertyName == Button.BorderWidthProperty.PropertyName && _borderAdjustsPadding)
 				_element.InvalidateMeasureNonVirtual(InvalidationTrigger.MeasureChanged);
@@ -256,7 +256,7 @@ namespace Xamarin.Forms.Platform.Android
 				return false;
 
 			string oldText = view.Text;
-			view.Text = _element.Text;
+			view.Text = TextTransformUtilites.GetTransformedText(_element.Text, _element.TextTransform);
 
 			// If we went from or to having no text, we need to update the image position
 			if (string.IsNullOrEmpty(oldText) != string.IsNullOrEmpty(view.Text))

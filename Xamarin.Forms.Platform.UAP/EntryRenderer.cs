@@ -23,6 +23,7 @@ namespace Xamarin.Forms.Platform.UWP
 		bool _cursorPositionChangePending;
 		bool _selectionLengthChangePending;
 		bool _nativeSelectionIsUpdating;
+		string _transformedText;
 
 		IElementController ElementController => Element as IElementController;
 
@@ -104,7 +105,8 @@ namespace Xamarin.Forms.Platform.UWP
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			if (e.PropertyName == Entry.TextProperty.PropertyName)
+			if (e.PropertyName == Entry.TextProperty.PropertyName ||
+				e.PropertyName == Entry.TextTransformProperty.PropertyName)
 				UpdateText();
 			else if (e.PropertyName == Entry.IsPasswordProperty.PropertyName)
 				UpdateIsPassword();
@@ -166,7 +168,10 @@ namespace Xamarin.Forms.Platform.UWP
 
 		void OnNativeTextChanged(object sender, Windows.UI.Xaml.Controls.TextChangedEventArgs args)
 		{
-			Element.SetValueCore(Entry.TextProperty, Control.Text);
+			if (Control.Text == _transformedText)
+				return;
+			_transformedText = TextTransformUtilites.GetTransformedText(Control.Text, Element.TextTransform);
+			Element.SetValueCore(Entry.TextProperty, _transformedText);
 		}
 
 		void TextBoxOnKeyUp(object sender, KeyRoutedEventArgs args)
@@ -282,7 +287,7 @@ namespace Xamarin.Forms.Platform.UWP
 
 		void UpdateText()
 		{
-			Control.Text = Element.Text ?? "";
+			Control.Text = _transformedText = TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
 		}
 
 		void UpdateTextColor()

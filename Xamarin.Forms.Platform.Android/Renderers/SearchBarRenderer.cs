@@ -137,7 +137,8 @@ namespace Xamarin.Forms.Platform.Android
 
 			if (e.PropertyName == SearchBar.PlaceholderProperty.PropertyName)
 				UpdatePlaceholder();
-			else if (e.PropertyName == SearchBar.TextProperty.PropertyName)
+			else if (e.PropertyName == SearchBar.TextProperty.PropertyName ||
+				e.PropertyName == SearchBar.TextTransformProperty.PropertyName)
 				UpdateText();
 			else if (e.PropertyName == SearchBar.CancelButtonColorProperty.PropertyName)
 				UpdateCancelButtonColor();
@@ -259,8 +260,9 @@ namespace Xamarin.Forms.Platform.Android
 		void UpdateText()
 		{
 			string query = Control.Query;
-			if (query != Element.Text)
-				Control.SetQuery(Element.Text, false);
+			var text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			if (query != text)
+				Control.SetQuery(text, false);
 		}
 
 		void UpdateCharacterSpacing()

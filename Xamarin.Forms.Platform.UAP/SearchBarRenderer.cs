@@ -55,7 +55,8 @@ namespace Xamarin.Forms.Platform.UWP
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			if (e.PropertyName == SearchBar.TextProperty.PropertyName)
+			if (e.PropertyName == SearchBar.TextProperty.PropertyName ||
+				e.PropertyName == SearchBar.TextTransformProperty.PropertyName)
 				UpdateText();
 			else if (e.PropertyName == SearchBar.PlaceholderProperty.PropertyName)
 				UpdatePlaceholder();
@@ -228,7 +229,7 @@ namespace Xamarin.Forms.Platform.UWP
 
 		void UpdateText()
 		{
-			Control.Text = Element.Text ?? string.Empty;
+			Control.Text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
 		}
 
 		void UpdateTextColor()

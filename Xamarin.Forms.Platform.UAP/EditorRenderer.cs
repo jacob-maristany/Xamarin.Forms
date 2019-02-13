@@ -20,6 +20,7 @@ namespace Xamarin.Forms.Platform.UWP
 		Brush _defaultTextColorFocusBrush;
 		Brush _defaultPlaceholderColorFocusBrush;
 		Brush _placeholderDefaultBrush;
+		string _transformedText;
 
 		IEditorController ElementController => Element;
 
@@ -113,7 +114,8 @@ namespace Xamarin.Forms.Platform.UWP
 			{
 				UpdateFont();
 			}
-			else if (e.PropertyName == Editor.TextProperty.PropertyName)
+			else if (e.PropertyName == Editor.TextProperty.PropertyName ||
+				e.PropertyName == Editor.TextTransformProperty.PropertyName)
 			{
 				UpdateText();
 			}
@@ -175,7 +177,8 @@ namespace Xamarin.Forms.Platform.UWP
 
 		void OnNativeTextChanged(object sender, Windows.UI.Xaml.Controls.TextChangedEventArgs args)
 		{
-			Element.SetValueCore(Editor.TextProperty, Control.Text);
+			_transformedText = TextTransformUtilites.GetTransformedText(Control.Text, Element.TextTransform);
+			Element.SetValueCore(Editor.TextProperty, _transformedText);
 		}
 
 		/*
@@ -314,7 +317,7 @@ namespace Xamarin.Forms.Platform.UWP
 		}
 		void UpdateText()
 		{
-			string newText = Element.Text ?? "";
+			string newText = _transformedText = TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
 
 			if (Control.Text == newText)
 			{

@@ -391,10 +391,11 @@ namespace Xamarin.Forms.Platform.MacOS
 			}
 			else
 			{
+				var text = Internals.TextTransformUtilites.GetTransformedText((string)values[1], Element.TextTransform);
 #if __MOBILE__
-				Control.Text = Element.Text;
+				Control.Text = text;
 #else
-				Control.StringValue = Element.Text ?? "";
+				Control.StringValue = text ?? "";
 #endif
 			}
 			UpdateLayout();
