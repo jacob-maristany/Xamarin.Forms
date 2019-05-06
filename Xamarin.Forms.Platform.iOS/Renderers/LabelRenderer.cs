@@ -391,7 +391,7 @@ namespace Xamarin.Forms.Platform.MacOS
 			}
 			else
 			{
-				var text = Internals.TextTransformUtilites.GetTransformedText((string)values[1], Element.TextTransform);
+				var text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 #if __MOBILE__
 				Control.Text = text;
 #else

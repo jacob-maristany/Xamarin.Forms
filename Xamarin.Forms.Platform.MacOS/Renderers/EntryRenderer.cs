@@ -286,7 +286,7 @@ namespace Xamarin.Forms.Platform.MacOS
 
 		void UpdateText()
 		{
-			var text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			var text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			// ReSharper disable once RedundantCheckBeforeAssignment
 			if (Control.StringValue != text)
 				Control.StringValue = text;

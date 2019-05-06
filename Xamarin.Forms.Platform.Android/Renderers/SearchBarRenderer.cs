@@ -260,7 +260,7 @@ namespace Xamarin.Forms.Platform.Android
 		void UpdateText()
 		{
 			string query = Control.Query;
-			var text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			var text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			if (query != text)
 				Control.SetQuery(text, false);
 		}

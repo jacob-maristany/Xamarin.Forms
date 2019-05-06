@@ -134,6 +134,9 @@ namespace Xamarin.Forms
 			set => SetValue(TextTransformProperty, value);
 		}
 
+		public virtual string UpdateFormsText(string source, TextTransform textTransform)
+			=> TextTransformUtilites.GetTransformedText(source, textTransform);
+
 		void IFontElement.OnFontFamilyChanged(string oldValue, string newValue)
 		{
 		}

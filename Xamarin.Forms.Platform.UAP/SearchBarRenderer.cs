@@ -229,7 +229,7 @@ namespace Xamarin.Forms.Platform.UWP
 
 		void UpdateText()
 		{
-			Control.Text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			Control.Text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 		}
 
 		void UpdateTextColor()

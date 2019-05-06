@@ -19,5 +19,7 @@ namespace Xamarin.Forms
 		TextTransform TextTransform { get; set; }
 
 		void OnTextTransformChanged(TextTransform oldValue, TextTransform newValue);
+
+		string UpdateFormsText(string original, TextTransform transform);
 	}
 }

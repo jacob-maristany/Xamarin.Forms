@@ -274,7 +274,7 @@ namespace Xamarin.Forms.Platform.Android
 					_view.SetTextColor(_labelTextColorDefault);
 					_lastUpdateColor = Color.Default;
 				}
-				_view.Text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+				_view.Text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 				UpdateColor();
 				UpdateFont();
 

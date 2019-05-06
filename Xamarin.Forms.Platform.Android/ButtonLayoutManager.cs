@@ -256,7 +256,7 @@ namespace Xamarin.Forms.Platform.Android
 				return false;
 
 			string oldText = view.Text;
-			view.Text = TextTransformUtilites.GetTransformedText(_element.Text, _element.TextTransform);
+			view.Text = _element.UpdateFormsText(_element.Text, _element.TextTransform);
 
 			// If we went from or to having no text, we need to update the image position
 			if (string.IsNullOrEmpty(oldText) != string.IsNullOrEmpty(view.Text))

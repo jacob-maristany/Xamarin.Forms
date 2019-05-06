@@ -250,7 +250,7 @@ namespace Xamarin.Forms.Platform.Android
 
 		void UpdateText()
 		{
-			string newText = TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			string newText = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 
 			if (EditText.Text == newText)
 				return;

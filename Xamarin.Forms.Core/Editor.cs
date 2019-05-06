@@ -135,6 +135,9 @@ namespace Xamarin.Forms
 		{
 		}
 
+		public virtual string UpdateFormsText(string source, TextTransform textTransform)
+			=> TextTransformUtilites.GetTransformedText(source, textTransform);
+
 		public event EventHandler Completed;
 
 		public event EventHandler<TextChangedEventArgs> TextChanged;

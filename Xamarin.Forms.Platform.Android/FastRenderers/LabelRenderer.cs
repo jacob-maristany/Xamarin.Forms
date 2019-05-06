@@ -383,7 +383,7 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 					SetTextColor(_labelTextColorDefault);
 					_lastUpdateColor = Color.Default;
 				}
-				Text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+				Text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 				UpdateColor();
 				UpdateFont();
 

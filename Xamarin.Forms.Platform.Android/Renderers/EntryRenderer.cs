@@ -224,7 +224,7 @@ namespace Xamarin.Forms.Platform.Android
 				UpdateInputType();
 			else if (e.IsOneOf(Entry.TextProperty, Entry.TextTransformProperty))
 			{
-				var text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+				var text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 				if (EditText.Text != text)
 				{
 					EditText.Text = text;

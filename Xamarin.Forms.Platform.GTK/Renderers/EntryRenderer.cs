@@ -99,7 +99,7 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
 
 		private void UpdateText()
 		{
-			var text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			var text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			if (Control.Entry.Text != text)
 				Control.Entry.Text = text;
 		}

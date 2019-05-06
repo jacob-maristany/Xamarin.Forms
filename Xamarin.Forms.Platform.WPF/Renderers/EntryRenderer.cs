@@ -110,7 +110,7 @@ namespace Xamarin.Forms.Platform.WPF
 			// Signal to the UpdateText method that the change to TextProperty doesn't need to update the control
 			// This prevents the cursor position from getting lost
 			_ignoreTextChange = true;
-			_transformedText = Internals.TextTransformUtilites.GetTransformedText(Control.Text, Element.TextTransform);
+			_transformedText = Element.UpdateFormsText(Control.Text, Element.TextTransform);
 			((IElementController)Element).SetValueFromRenderer(Entry.TextProperty, _transformedText);
 
 			// If an Entry.TextChanged handler modified the value of the Entry's text, the values could now be 
@@ -242,7 +242,7 @@ namespace Xamarin.Forms.Platform.WPF
 			if (_ignoreTextChange)
 				return;
 
-			var text = _transformedText = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			var text = _transformedText = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			if (Control.Text == text)
 				return;
 

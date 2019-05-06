@@ -321,7 +321,7 @@ namespace Xamarin.Forms.Platform.iOS
 
 		protected internal virtual void UpdateText()
 		{
-			var text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			var text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			if (TextView.Text != text)
 			{
 				TextView.Text = text;

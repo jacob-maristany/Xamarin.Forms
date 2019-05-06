@@ -60,7 +60,7 @@ namespace Xamarin.Forms.Platform.WPF
 		
 		void NativeOnTextChanged(object sender, System.Windows.Controls.TextChangedEventArgs textChangedEventArgs)
 		{
-			_transformedText = Internals.TextTransformUtilites.GetTransformedText(Control.Text, Element.TextTransform);
+			_transformedText = Element.UpdateFormsText(Control.Text, Element.TextTransform);
 			((IElementController)Element).SetValueFromRenderer(Editor.TextProperty, Control.Text);
 		}
 
@@ -101,7 +101,7 @@ namespace Xamarin.Forms.Platform.WPF
 
 		void UpdateText()
 		{
-			string newText = _transformedText = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			string newText = _transformedText = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 
 			if (Control.Text == newText)
 				return;

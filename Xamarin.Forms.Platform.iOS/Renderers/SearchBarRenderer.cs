@@ -312,7 +312,7 @@ namespace Xamarin.Forms.Platform.iOS
 			// when typing, so by keeping track of whether or not text was typed, we can respect
 			// other changes to Element.Text.
 			if (!_textWasTyped)
-				Control.Text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+				Control.Text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			
 			UpdateCancelButton();
 		}

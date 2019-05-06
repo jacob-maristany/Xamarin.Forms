@@ -99,7 +99,7 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
 		{
 			TextBuffer buffer = Control.TextView.Buffer;
 
-			var text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			var text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			if (buffer.Text != text)
 			{
 				buffer.Text = text;

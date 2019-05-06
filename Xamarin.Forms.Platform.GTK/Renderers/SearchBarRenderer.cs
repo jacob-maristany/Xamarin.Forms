@@ -84,9 +84,9 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
 			}
 		}
 
-		private void UpdateText()
+		void UpdateText()
 		{
-			Control.SearchText = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			Control.SearchText = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 		}
 
 		private void UpdatePlaceholder()

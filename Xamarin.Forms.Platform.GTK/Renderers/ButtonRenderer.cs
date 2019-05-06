@@ -125,7 +125,7 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
 				FontAttributes = Element.FontAttributes,
 				FontFamily = Element.FontFamily,
 				FontSize = Element.FontSize,
-				Text = GLib.Markup.EscapeText(Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform))
+				Text = GLib.Markup.EscapeText(Element.UpdateFormsText(Element.Text, Element.TextTransform))
 			};
 
 			Control.LabelWidget.SetTextFromSpan(span);

@@ -337,7 +337,7 @@ namespace Xamarin.Forms.Platform.UWP
 
 				if (formatted == null)
 				{
-					textBlock.Text = Internals.TextTransformUtilites.GetTransformedText(label.Text, label.TextTransform);
+					textBlock.Text = label.UpdateFormsText(label.Text, label.TextTransform);
 				}
 				else
 				{

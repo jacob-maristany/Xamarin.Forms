@@ -87,7 +87,7 @@ namespace Xamarin.Forms.Platform.WPF
 
 		async void UpdateContent()
 		{
-			var text = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			var text = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			var elementImage = await Element.ImageSource.ToWindowsImageSourceAsync();
 
 			// No image, just the text

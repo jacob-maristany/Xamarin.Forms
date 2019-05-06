@@ -167,7 +167,7 @@ namespace Xamarin.Forms.Platform.MacOS
 
 		void UpdateText()
 		{
-			Control.StringValue = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			Control.StringValue = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 			UpdateCancelButton();
 		}
 

@@ -170,7 +170,7 @@ namespace Xamarin.Forms.Platform.UWP
 		{
 			if (Control.Text == _transformedText)
 				return;
-			_transformedText = TextTransformUtilites.GetTransformedText(Control.Text, Element.TextTransform);
+			_transformedText = Element.UpdateFormsText(Control.Text, Element.TextTransform);
 			Element.SetValueCore(Entry.TextProperty, _transformedText);
 		}
 
@@ -287,7 +287,7 @@ namespace Xamarin.Forms.Platform.UWP
 
 		void UpdateText()
 		{
-			Control.Text = _transformedText = TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			Control.Text = _transformedText = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 		}
 
 		void UpdateTextColor()

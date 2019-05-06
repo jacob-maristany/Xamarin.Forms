@@ -177,7 +177,7 @@ namespace Xamarin.Forms.Platform.UWP
 
 		void OnNativeTextChanged(object sender, Windows.UI.Xaml.Controls.TextChangedEventArgs args)
 		{
-			_transformedText = TextTransformUtilites.GetTransformedText(Control.Text, Element.TextTransform);
+			_transformedText = Element.UpdateFormsText(Control.Text, Element.TextTransform);
 			Element.SetValueCore(Editor.TextProperty, _transformedText);
 		}
 
@@ -317,7 +317,7 @@ namespace Xamarin.Forms.Platform.UWP
 		}
 		void UpdateText()
 		{
-			string newText = _transformedText = TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			string newText = _transformedText = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 
 			if (Control.Text == newText)
 			{

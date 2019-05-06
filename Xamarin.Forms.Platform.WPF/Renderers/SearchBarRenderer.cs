@@ -77,7 +77,7 @@ namespace Xamarin.Forms.Platform.WPF
 		{
 			if (Control.Text == _transformedText)
 				return;
-			_transformedText = Internals.TextTransformUtilites.GetTransformedText(Control.Text, Element.TextTransform);
+			_transformedText = Element.UpdateFormsText(Control.Text, Element.TextTransform);
 			((IElementController)Element).SetValueFromRenderer(SearchBar.TextProperty, _transformedText);
 		}
 
@@ -147,7 +147,7 @@ namespace Xamarin.Forms.Platform.WPF
 
 		void UpdateText()
 		{
-			Control.Text = _transformedText = Internals.TextTransformUtilites.GetTransformedText(Element.Text, Element.TextTransform);
+			Control.Text = _transformedText = Element.UpdateFormsText(Element.Text, Element.TextTransform);
 		}
 
 		void UpdateTextColor()

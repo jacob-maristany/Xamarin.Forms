@@ -194,7 +194,7 @@ namespace Xamarin.Forms.Platform.WPF
 			if (label != null)
 			{
 				if (label.FormattedText == null)
-					Control.Text = Internals.TextTransformUtilites.GetTransformedText(label.Text, label.TextTransform);
+					Control.Text = label.UpdateFormsText(label.Text, label.TextTransform);
 				else
 				{
 					FormattedString formattedText = label.FormattedText ?? label.Text;
