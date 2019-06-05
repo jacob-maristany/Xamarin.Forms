@@ -100,9 +100,8 @@ namespace Xamarin.Forms.Platform.iOS
 			}
 			else if (e.PropertyName == SearchBar.TextColorProperty.PropertyName)
 				UpdateTextColor();
-			else if (e.PropertyName == SearchBar.TextProperty.PropertyName ||
-				e.PropertyName == SearchBar.TextTransformProperty.PropertyName ||
-				e.PropertyName == SearchBar.CharacterSpacingProperty.PropertyName)
+			else if (e.IsOneOf(SearchBar.TextProperty, SearchBar.TextTransformProperty,
+				SearchBar.CharacterSpacingProperty))
 				UpdateText();
 				UpdateCharacterSpacing();
 			}

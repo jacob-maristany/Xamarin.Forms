@@ -137,8 +137,7 @@ namespace Xamarin.Forms.Platform.Android
 
 			if (e.PropertyName == SearchBar.PlaceholderProperty.PropertyName)
 				UpdatePlaceholder();
-			else if (e.PropertyName == SearchBar.TextProperty.PropertyName ||
-				e.PropertyName == SearchBar.TextTransformProperty.PropertyName)
+			else if (e.IsOneOf(SearchBar.TextProperty, SearchBar.TextTransformProperty))
 				UpdateText();
 			else if (e.PropertyName == SearchBar.CancelButtonColorProperty.PropertyName)
 				UpdateCancelButtonColor();

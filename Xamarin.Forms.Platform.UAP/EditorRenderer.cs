@@ -114,8 +114,7 @@ namespace Xamarin.Forms.Platform.UWP
 			{
 				UpdateFont();
 			}
-			else if (e.PropertyName == Editor.TextProperty.PropertyName ||
-				e.PropertyName == Editor.TextTransformProperty.PropertyName)
+			else if (e.IsOneOf(Editor.TextProperty, Editor.TextTransformProperty))
 			{
 				UpdateText();
 			}

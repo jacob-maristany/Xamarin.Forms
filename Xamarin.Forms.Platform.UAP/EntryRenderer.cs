@@ -105,8 +105,7 @@ namespace Xamarin.Forms.Platform.UWP
 		{
 			base.OnElementPropertyChanged(sender, e);
 
-			if (e.PropertyName == Entry.TextProperty.PropertyName ||
-				e.PropertyName == Entry.TextTransformProperty.PropertyName)
+			if (e.IsOneOf(Entry.TextProperty, Entry.TextTransformProperty))
 				UpdateText();
 			else if (e.PropertyName == Entry.IsPasswordProperty.PropertyName)
 				UpdateIsPassword();

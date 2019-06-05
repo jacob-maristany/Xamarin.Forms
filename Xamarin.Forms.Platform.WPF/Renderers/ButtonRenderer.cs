@@ -50,7 +50,7 @@ namespace Xamarin.Forms.Platform.WPF
 			base.OnElementPropertyChanged(sender, e);
 
 			if (e.PropertyName == Button.TextProperty.PropertyName || 
-				e.PropertyName == Button.ImageProperty.PropertyName ||
+				e.PropertyName == Button.ImageSourceProperty.PropertyName ||
 				e.PropertyName == Button.TextTransformProperty.PropertyName)
 				UpdateContent();
 			else if (e.PropertyName == Button.TextColorProperty.PropertyName)

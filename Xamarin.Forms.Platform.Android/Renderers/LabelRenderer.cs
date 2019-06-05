@@ -148,7 +148,7 @@ namespace Xamarin.Forms.Platform.Android
 
 			if (e.PropertyName == Label.HorizontalTextAlignmentProperty.PropertyName || e.PropertyName == Label.VerticalTextAlignmentProperty.PropertyName)
 				UpdateGravity();
-			else if (e.PropertyName == Label.TextColorProperty.PropertyName || e.PropertyName == Label.TextTransformProperty.PropertyName)
+			else if (e.IsOneOf(Label.TextColorProperty, Label.TextTransformProperty))
 				UpdateText();
 			else if (e.PropertyName == Label.FontProperty.PropertyName)
 				UpdateText();

@@ -274,9 +274,7 @@ namespace Xamarin.Forms.Platform.Android.FastRenderers
 				UpdateCharacterSpacing();
 			else if (e.PropertyName == Label.TextDecorationsProperty.PropertyName)
 				UpdateTextDecorations();
-			else if (e.PropertyName == Label.TextProperty.PropertyName ||
-				e.PropertyName == Label.FormattedTextProperty.PropertyName ||
-				e.PropertyName == Label.TextTransformProperty.PropertyName)
+			else if (e.IsOneOf(Label.TextProperty, Label.FormattedTextProperty, Label.TextTransformProperty))
 				UpdateText();
 			else if (e.PropertyName == Label.LineHeightProperty.PropertyName)
 				UpdateLineHeight();
