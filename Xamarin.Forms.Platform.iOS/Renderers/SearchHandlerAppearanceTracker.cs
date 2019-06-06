@@ -70,7 +70,7 @@ namespace Xamarin.Forms.Platform.iOS
 			}
 			else if (e.Is(SearchHandler.TextTransformProperty))
 			{
-				UpdateTextTransform(uiTextField);
+				UpdateTextTransform(_uiSearchBar.FindDescendantView<UITextField>());
 			}
 			else if (e.IsOneOf(SearchHandler.PlaceholderColorProperty, SearchHandler.PlaceholderProperty))
 			{
