@@ -102,6 +102,7 @@ namespace Xamarin.Forms.Platform.iOS
 				UpdateTextColor();
 			else if (e.IsOneOf(SearchBar.TextProperty, SearchBar.TextTransformProperty,
 				SearchBar.CharacterSpacingProperty))
+			{
 				UpdateText();
 				UpdateCharacterSpacing();
 			}

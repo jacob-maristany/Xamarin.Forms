@@ -155,6 +155,7 @@ namespace Xamarin.Forms.Platform.iOS
 			else if (e.PropertyName == Entry.IsPasswordProperty.PropertyName)
 				UpdatePassword();
 			else if (e.IsOneOf(Entry.TextProperty, Entry.TextTransformProperty))
+			{
 				UpdateText();
 				UpdateCharacterSpacing();
 			}
