@@ -40,6 +40,7 @@ using Xamarin.Forms.Platform.Android;
 [assembly: ExportRenderer (typeof (MasterDetailPage), typeof (MasterDetailRenderer))]
 [assembly: ExportRenderer (typeof (MediaElement), typeof(MediaElementRenderer))]
 [assembly: ExportRenderer (typeof (RefreshView), typeof (RefreshViewRenderer))]
+[assembly: ExportRenderer (typeof(Camera), typeof(CameraRenderer))]
 #endif
 
 [assembly: ExportRenderer(typeof(Shell), typeof(ShellRenderer))]

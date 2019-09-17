@@ -173,6 +173,11 @@ namespace Xamarin.Forms.Platform
 
 	[RenderWith(typeof(SwipeViewRenderer))]
 	internal class _SwipeViewRenderer { }
+
+#if !TIZEN4_0
+    [RenderWith (typeof(CameraViewRenderer))]
+	internal class _CameraViewRenderer { }
+#endif
 }
 
 

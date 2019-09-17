@@ -51,6 +51,10 @@
 	{
 	}
 
+	internal class _CameraViewRenderer
+	{
+	}
+
 	internal class _SliderRenderer
 	{
 	}
