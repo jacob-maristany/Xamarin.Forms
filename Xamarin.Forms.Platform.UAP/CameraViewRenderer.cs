@@ -38,6 +38,7 @@ namespace Xamarin.Forms.Platform.UWP
 		public CameraViewRenderer()
 		{
 			_encodingProfile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.Auto);
+			Xamarin.Forms.CameraView.VerifyCameraViewFlagEnabled(nameof(CameraViewRenderer));
 		}
 
 		bool IsBusy

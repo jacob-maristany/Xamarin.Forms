@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Xamarin.Forms.Platform;
 
 namespace Xamarin.Forms
@@ -7,6 +8,14 @@ namespace Xamarin.Forms
 	[RenderWith(typeof(_CameraViewRenderer))]
 	public class CameraView: View, IElementConfiguration<CameraView>
 	{
+		[EditorBrowsable(EditorBrowsableState.Never)]
+		public static void VerifyCameraViewFlagEnabled(
+			string constructorHint = null,
+			[CallerMemberName] string memberName = "")
+		{
+			ExperimentalFlags.VerifyFlagEnabled(nameof(CameraView), ExperimentalFlags.CameraViewExperimental, memberName: memberName);
+		}
+
 		public event EventHandler<MediaCapturedEventArgs> MediaCaptured;
 
 		public event EventHandler<string> MediaCaptureFailed;

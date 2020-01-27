@@ -8,6 +8,11 @@ namespace Xamarin.Forms.Platform.iOS
 {
 	public class CameraViewRenderer : ViewRenderer<CameraView, FormsCameraView>
 	{
+		public CameraViewRenderer()
+		{
+			Xamarin.Forms.CameraView.VerifyCameraViewFlagEnabled(nameof(CameraViewRenderer));
+		}
+
 		protected override void OnElementChanged(ElementChangedEventArgs<CameraView> e)
 		{
 			base.OnElementChanged(e);

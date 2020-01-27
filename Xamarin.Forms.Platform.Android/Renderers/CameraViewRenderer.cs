@@ -91,6 +91,7 @@ namespace Xamarin.Forms.Platform.Android
 
 		public CameraViewRenderer(Context context) : base(context)
 		{
+			Xamarin.Forms.CameraView.VerifyCameraViewFlagEnabled(nameof(CameraViewRenderer));
 			_motionEventHelper = new MotionEventHelper();
 			_mediaSound = new Lazy<MediaActionSound>(() => new MediaActionSound());
 			_captureSessionOpenCloseLock = new Semaphore(1);
