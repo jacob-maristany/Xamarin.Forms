@@ -135,7 +135,7 @@ namespace Xamarin.Forms
 	{
 		public object Data { get; set; }
 		public ImageSource Image { get; set; }
-		public VideoSource Video { get; set; }
+		public MediaSource Video { get; set; }
 	}
 
 	public enum CameraOptions

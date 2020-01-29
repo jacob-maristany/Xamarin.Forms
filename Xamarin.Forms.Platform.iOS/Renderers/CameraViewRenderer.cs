@@ -102,7 +102,7 @@ namespace Xamarin.Forms.Platform.iOS
 						{
 							Element.RaiseMediaCaptured(new MediaCapturedEventArgs
 							{
-								Video = VideoSource.FromFile(outputFileUrl.Path)
+								Video = MediaSource.FromFile(outputFileUrl.Path)
 							});
 						});
 					}

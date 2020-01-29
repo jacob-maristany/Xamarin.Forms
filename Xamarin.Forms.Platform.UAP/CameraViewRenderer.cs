@@ -175,7 +175,7 @@ namespace Xamarin.Forms.Platform.UWP
 			await _mediaRecording.StartAsync();
 		}
 
-		internal async Task<VideoSource> StopRecord()
+		internal async Task<MediaSource> StopRecord()
 		{
 			if (_mediaRecording == null)
 				return null;
@@ -202,7 +202,7 @@ namespace Xamarin.Forms.Platform.UWP
 				_videoStabilizationEffect = null;
 			}
 
-			return VideoSource.FromFile(_filePath);
+			return MediaSource.FromFile(_filePath);
 		}
 
 		void _mediaCaptureFailed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)

@@ -1017,7 +1017,7 @@ namespace Xamarin.Forms.Platform.Android
 				Element?.RaiseMediaCaptured(new MediaCapturedEventArgs()
 				{
 					Data = data,
-					Video = VideoSource.FromUri(new Uri(data))
+					Video = MediaSource.FromUri(new Uri(data))
 				});
 			});
 		}
