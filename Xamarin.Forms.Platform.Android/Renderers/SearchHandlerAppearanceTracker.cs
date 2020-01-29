@@ -74,7 +74,7 @@ namespace Xamarin.Forms.Platform.Android
 			{
 				UpdateTextTransform();
 			}
-			else if (e.IsOneOf(SearchHandler.PlaceholderColorProperty))
+			else if (e.Is(SearchHandler.PlaceholderColorProperty))
 			{
 				UpdatePlaceholderColor();
 			}
@@ -172,7 +172,7 @@ namespace Xamarin.Forms.Platform.Android
 			if (image != null && image.Drawable != null)
 			{
 				if (!toColor.IsDefault)
-					image.Drawable.SetColorFilter(toColor.ToAndroid(), PorterDuff.Mode.SrcIn);
+					image.Drawable.SetColorFilter(toColor, FilterMode.SrcIn);
 				else
 					image.Drawable.ClearColorFilter();
 			}

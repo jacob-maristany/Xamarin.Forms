@@ -140,7 +140,7 @@ namespace Xamarin.Forms.Platform.GTK.Renderers
 					FontAttributes = Element.FontAttributes,
 					FontFamily = Element.FontFamily,
 					FontSize = Element.FontSize,
-					Text = GLib.Markup.EscapeText(Element.UpdateFormsText(Element.Text, Element.TextTransform))
+					Text = GLib.Markup.EscapeText(Element.UpdateFormsText(Element.Text ?? string.Empty, Element.TextTransform)) ?? string,.Empty
 				};
 
 				Control.SetTextFromSpan(span);
