@@ -27,8 +27,6 @@ namespace Xamarin.Forms
 
 		public static readonly BindableProperty FontAttributesProperty = FontElement.FontAttributesProperty;
 
-		public static readonly BindableProperty TextTransformProperty = TextElement.TextTransformProperty;
-
 		public static readonly BindableProperty HorizontalTextAlignmentProperty = TextAlignmentElement.HorizontalTextAlignmentProperty;
 
 		public static readonly BindableProperty VerticalTextAlignmentProperty = TextAlignmentElement.VerticalTextAlignmentProperty;
@@ -92,16 +90,7 @@ namespace Xamarin.Forms
 			get { return (double)GetValue(FontSizeProperty); }
 			set { SetValue(FontSizeProperty, value); }
 		}
-
-		public TextTransform TextTransform
-		{
-			get => (TextTransform)GetValue(TextTransformProperty);
-			set => SetValue(TextTransformProperty, value);
-		}
-
-		public virtual string UpdateFormsText(string source, TextTransform textTransform)
-			=> TextTransformUtilites.GetTransformedText(source, textTransform);
-
+		
 		void IFontElement.OnFontFamilyChanged(string oldValue, string newValue)
 		{
 		}
@@ -120,10 +109,7 @@ namespace Xamarin.Forms
 		void IFontElement.OnFontChanged(Font oldValue, Font newValue)
 		{
 		}
-
-		void ITextElement.OnTextTransformChanged(TextTransform oldValue, TextTransform newValue) =>
-			InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
-
+		
 		public event EventHandler SearchButtonPressed;
 
 		public SearchBar()

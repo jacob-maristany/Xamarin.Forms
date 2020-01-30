@@ -25,8 +25,6 @@ namespace Xamarin.Forms
 
 		public new static readonly BindableProperty TextColorProperty = InputView.TextColorProperty;
 
-		public static readonly BindableProperty TextTransformProperty = TextElement.TextTransformProperty;
-
 		public new static readonly BindableProperty CharacterSpacingProperty = InputView.CharacterSpacingProperty;
 
 		public static readonly BindableProperty HorizontalTextAlignmentProperty = TextAlignmentElement.HorizontalTextAlignmentProperty;
@@ -91,12 +89,6 @@ namespace Xamarin.Forms
 			set { SetValue(FontSizeProperty, value); }
 		}
 
-		public TextTransform TextTransform
-		{
-			get { return (TextTransform)GetValue(TextTransformProperty); }
-			set { SetValue(TextTransformProperty, value); }
-		}
-
 		public bool IsTextPredictionEnabled
 		{
 			get { return (bool)GetValue(IsTextPredictionEnabledProperty); }
@@ -153,12 +145,6 @@ namespace Xamarin.Forms
 
 		void IFontElement.OnFontChanged(Font oldValue, Font newValue) =>
 			 InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
-
-		void ITextElement.OnTextTransformChanged(TextTransform oldValue, TextTransform newValue) =>
-			 InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
-
-		public virtual string UpdateFormsText(string source, TextTransform textTransform)
-			=> TextTransformUtilites.GetTransformedText(source, textTransform);
 
 		public event EventHandler Completed;
 
