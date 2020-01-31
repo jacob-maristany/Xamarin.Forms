@@ -219,6 +219,8 @@ namespace Xamarin.Forms.Platform.MacOS
 				UpdatePadding();
 			else if (e.PropertyName == Label.TextTypeProperty.PropertyName)
 				UpdateText();
+			else if (e.PropertyName == Label.TextTransformProperty.PropertyName)
+				UpdateText();
 		}
 
 		protected override NativeLabel CreateNativeControl()
