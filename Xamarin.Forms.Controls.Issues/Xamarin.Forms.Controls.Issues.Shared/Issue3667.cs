@@ -79,11 +79,11 @@ namespace Xamarin.Forms.Controls.Issues
 			if (labelValue.Length == 0)
 				Assert.Fail();
 			RunningApp.Tap("Change TextTransform");
-			labelValue = RunningApp.Query(query => query.Text(text.ToUpperInvariant()));
+			labelValue = RunningApp.Query(query => query.Text(text.ToLowerInvariant()));
 			if (labelValue.Length == 0)
 				Assert.Fail();
 			RunningApp.Tap("Change TextTransform");
-			labelValue = RunningApp.Query(query => query.Text(text.ToLowerInvariant()));
+			labelValue = RunningApp.Query(query => query.Text(text.ToUpperInvariant()));
 			if (labelValue.Length == 0)
 				Assert.Fail();
 			RunningApp.Tap("Change TextTransform");
