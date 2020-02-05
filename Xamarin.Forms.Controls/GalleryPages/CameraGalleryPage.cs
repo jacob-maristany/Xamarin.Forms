@@ -8,6 +8,7 @@ namespace Xamarin.Forms.Controls.GalleryPages
 	internal class CameraGalleryPage : CarouselPage
 	{
 		readonly CameraView cameraView;
+		Button buttonShot;
 
 		public CameraGalleryPage()
 		{
@@ -27,7 +28,13 @@ namespace Xamarin.Forms.Controls.GalleryPages
 				BackgroundColor = Color.Yellow
 			};
 
-			cameraView.MediaCaptured += (_, e) => testImage.Source = e.Image;
+			var testMediaElement = new MediaElement
+			{
+				HeightRequest = 480,
+				WidthRequest = 640,
+				BackgroundColor = Color.Aqua,
+				IsVisible = false
+			};
 
 			var zoomSlider = new Slider(1, 10, 1)
 			{
@@ -44,13 +51,37 @@ namespace Xamarin.Forms.Controls.GalleryPages
 				startedZoom = cameraView.Zoom;
 			};
 
-			var buttonShot = new Button
+			buttonShot = new Button
 			{
 				BackgroundColor = Color.FromRgba(255, 255, 255, 80),
 				TextColor = Color.Black,
 				Text = "Shot",
-				Command = new Command(cameraView.Shutter),
+				Command = new Command(() => { 
+					cameraView.Shutter();
+					buttonShot.Text = cameraView.CaptureOptions != CameraCaptureOptions.Video ? "Shot" : "Stop record";
+					}),
 				IsEnabled = false
+			};
+
+			cameraView.MediaCaptured += (_, e) =>
+			{
+				switch (cameraView.CaptureOptions)
+				{
+					default:
+					case CameraCaptureOptions.Default:
+					case CameraCaptureOptions.Photo:
+						testMediaElement.IsVisible = false;
+						testImage.IsVisible = true;
+						testImage.Source = e.Image;
+						buttonShot.Text = "Shot";
+						break;
+					case CameraCaptureOptions.Video:
+						testImage.IsVisible = false;
+						testMediaElement.IsVisible = true;
+						testMediaElement.Source = e.Video;
+						buttonShot.Text = "Start record";
+						break;
+				}
 			};
 
 			var cameraControls = new Grid();
@@ -94,19 +125,30 @@ namespace Xamarin.Forms.Controls.GalleryPages
 							new Label { Text = "Flash" },
 							CreatePicker<CameraFlashMode>("Flash", f => cameraView.FlashMode = f),
 							new Label { Text = "Video" },
-							CreateSwitch((v) => cameraView.CaptureOptions = v ? CameraCaptureOptions.Video : CameraCaptureOptions.Photo),
+							CreateSwitch((v) => {
+								if (v)
+								{
+									cameraView.CaptureOptions = CameraCaptureOptions.Video;
+									buttonShot.Text = "Start record";
+ 								} 
+								else
+								{
+									cameraView.CaptureOptions = CameraCaptureOptions.Photo;
+									buttonShot.Text = "Shot";
+								}
+							}),
 							new Label { Text = "Video Stabilization" },
-							CreateSwitch((v) => cameraView.VideoStabilization = v),
+							CreateSwitch(v => cameraView.VideoStabilization = v),
 							new Label { Text = "Save photo to file" },
-							CreateSwitch((v) => cameraView.SavePhotoToFile = v),
+							CreateSwitch(v => cameraView.SavePhotoToFile = v),
 							new Label { Text = "PreviewAspect" },
 							CreatePicker<Aspect>("PreviewAspect", a => cameraView.PreviewAspect = a),
 							new Label { Text = "[Android] System sound" },
-							CreateSwitch((v) => cameraView.On<Android>().SetSutterSound(v), isToggled: true),
+							CreateSwitch(v => cameraView.On<Android>().SetSutterSound(v), isToggled: true),
 							new Label { Text = "[Android] Mirror front preview" },
-							CreateSwitch((v) => cameraView.On<Android>().SetMirrorFrontPreview(v)),
+							CreateSwitch(v => cameraView.On<Android>().SetMirrorFrontPreview(v)),
 							testImage,
-							// testMediaElement TODO: after MediaElement control https://github.com/xamarin/Xamarin.Forms/pull/3482
+							testMediaElement
 						}
 					}
 				}

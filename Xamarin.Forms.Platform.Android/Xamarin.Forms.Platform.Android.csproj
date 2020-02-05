@@ -42,6 +42,12 @@
     <AndroidResource Link="Resources\Layout\ShellContent.axml" Include="Resources\Layout\Android\ShellContent.axml" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Resources\Layout\CameraFragment.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Layout\CameraFragment.axml" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Xml" />

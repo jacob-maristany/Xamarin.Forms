@@ -15,12 +15,13 @@ namespace Xamarin.Forms.Platform.Android
 
 			try
 			{
-				image = reader.AcquireLatestImage();
+				image = reader.AcquireNextImage();
 				var buffer = image.GetPlanes()[0].Buffer;
 				var imageData = new byte[buffer.Capacity()];
 				buffer.Get(imageData);
 
 				Photo?.Invoke(this, imageData);
+				buffer.Clear();
 			}
 			catch (Exception)
 			{
