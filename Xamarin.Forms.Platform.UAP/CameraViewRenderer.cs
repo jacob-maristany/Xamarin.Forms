@@ -86,7 +86,8 @@ namespace Xamarin.Forms.Platform.UWP
 				isPreviewing = false;
 				await InitializeCameraAsync();
 
-				_mediaCapture.Failed += _mediaCaptureFailed;
+				if (_mediaCapture != null)
+					_mediaCapture.Failed += _mediaCaptureFailed;
 			}
 		}
 
